@@ -1,14 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.List" %>   
-<%@ page import="com.javaex.vo.MemberVo" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
     
-<% 
-	List<MemberVo> memberList =(List<MemberVo>) request.getAttribute("memberList");
-
-	System.out.println(memberList);
-
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,10 +101,7 @@
 						
 					</form>	
 					
-<% 
-for(int i=0;i<memberList.size();i++){
-%>					
-					
+				
 					<table class="guestRead">
 						<colgroup>
 							<col style="width: 10%;">
@@ -119,20 +109,22 @@ for(int i=0;i<memberList.size();i++){
 							<col style="width: 40%;">
 							<col style="width: 10%;">
 						</colgroup>
+						
+						<c:forEach items="${requestScope.memberList}" var="memberVo">
 						<tr>
-							<td><%=memberList.get(i).getNo()%></td>
-							<td><%=memberList.get(i).getName()%></td>
-							<td><%=memberList.get(i).getReg_date()%></td>
-							<td><a href="/mysite3/gbc?action=dform&no=<%=memberList.get(i).getNo()%>">[삭제]</a></td>
+							<td>${memberVo.no}</td>
+							<td>${memberVo.name}</td>
+							<td>${memberVo.reg_date}</td>
+							<td><a href="/mysite3/gbc?action=dform&no=${memberVo.no}">[삭제]</a></td>
 						</tr>
 						<tr>
-							<td colspan=4 class="text-left"><%=memberList.get(i).getContent()%></td>
+							<td colspan=4 class="text-left">${memberVo.content}</td>
 						</tr>
+						</c:forEach>
+						
 					</table>
 					
-<%
-}
-%>					
+>					
 					<!-- //guestRead -->
 					
 					

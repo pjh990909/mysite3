@@ -127,8 +127,7 @@ public class UserController extends HttpServlet {
 			session.setAttribute("authUser", userVo);
 			
 			WebUtil.redirect(request, response,"/mysite3/main");
-		}
-		else {
+		}else {
 		
 			System.out.println("action값을 확인해주세요");
 		}
